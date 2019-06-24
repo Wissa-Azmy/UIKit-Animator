@@ -51,6 +51,8 @@ class SpringsAndTransitionsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // TODO: Animation setup
+        titleLabel.alpha = 0
+        continueButton.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,23 +60,61 @@ class SpringsAndTransitionsViewController: UIViewController {
         
         // TODO: Fire initial animations
         animateTitleInWithSprin()
+        showContinueButton()
     }
 
     // MARK: Action buttons
     @IBAction func segmentControlOnSelected(_ sender: UISegmentedControl) {
         // TODO: Toggle UI layout
+        if sender.selectedSegmentIndex == 1 {
+            addTextFieldWithTransitin()
+        } else {
+            removeTextFieldWithTransitin()
+        }
     }
     
     @IBAction func continueOnButtonPressed(_ sender: UIButton) {
         // TODO: Swap footer label
+        swapViewsWithTransition()
     }
     
     // MARK: Animations & Transitions
     func animateTitleInWithSprin() {
-        UIView.animate(withDuration: 2.0, delay: 0.25, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: [], animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.25, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
             self.titleLabel.alpha = 1
             self.titleLabel.frame.origin.y += 150
         })
     }
     
+    func showContinueButton() {
+        UIView.transition(with: continueButton, duration: 1.0, options: [.transitionFlipFromTop], animations: {
+            self.continueButton.isHidden = false
+        })
+    }
+    
+    func addTextFieldWithTransitin() {
+        UIView.transition(with: textfieldContainer, duration: 1.0, options: [.transitionCrossDissolve], animations: {
+            self.textfieldContainer.addSubview(self.phoneTextfield)
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
+            self.continueButton.center.y += 50
+        })
+    }
+    
+    func removeTextFieldWithTransitin() {
+        UIView.transition(with: textfieldContainer, duration: 0.5, options: [.transitionFlipFromBottom], animations: {
+            self.phoneTextfield.removeFromSuperview()
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
+            self.continueButton.center.y -= 50
+        })
+    }
+    
+    func swapViewsWithTransition() {
+        UIView.transition(from: footerLabel, to: swappedFooterLabel, duration: 1.0, options: [.transitionCurlDown]) { (completed) in
+            self.segueToNextViewController(segueID: Constants.Segues.toKeyframesVC, delay: 1.5)
+        }
+    }
 }
