@@ -30,4 +30,16 @@ class AnimationManager {
         return CGPoint(x: screenBounds.midX, y: screenBounds.maxY)
     }
     
+    // Tracking variables
+    var constraintOrigins = [CGFloat]()
+    var currentConstraints: [NSLayoutConstraint]!
+    
+    init(activeConstraints: [NSLayoutConstraint]) {
+        for constraint in activeConstraints {
+            constraintOrigins.append(constraint.constant)
+            constraint.constant -= AnimationManager.screenBounds.width
+        }
+        
+        currentConstraints = activeConstraints
+    }
 }

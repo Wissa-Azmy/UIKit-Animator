@@ -45,16 +45,26 @@ class ConstraintAnimationsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // TODO: Offscreen positioning
+        welcomeCenterX.constant -= AnimationManager.screenBounds.width
+        newsletterCenterX.constant -= AnimationManager.screenBounds.width
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // TODO: Fire initial animations
+        animateViewsOnScreen()
     }
     
     // MARK: Actions
     
     // MARK: Animations
+    func animateViewsOnScreen() {
+        UIView.animate(withDuration: 1.5, delay: 0.25, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
+            self.welcomeCenterX.constant += AnimationManager.screenBounds.width
+            self.newsletterCenterX.constant += AnimationManager.screenBounds.width
+            self.view.layoutIfNeeded()
+        })
+    }
 
 }
