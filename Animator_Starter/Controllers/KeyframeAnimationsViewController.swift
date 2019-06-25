@@ -13,6 +13,12 @@ class KeyframeAnimationsViewController: UIViewController {
     // MARK: Storyboard outlets
     @IBOutlet weak var animationTarget: UIButton!
     
+    var targetOffset: CGFloat {
+        return animationTarget.frame.size.width / 2
+    }
+    
+    var targetOrigin: CGPoint!
+    
     // MARK: Appearance
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -30,8 +36,34 @@ class KeyframeAnimationsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // TODO: Fire keyframe animation
+        targetOrigin = animationTarget.center
+        bounceImageWithKeyFrame()
+        segueToNextViewController(segueID: Constants.Segues.toConstraintsVC, delay: 8.0)
     }
 
     // MARK: Keyframe animation
-    
+    func bounceImageWithKeyFrame() {
+        UIView.animateKeyframes(withDuration: 4.0, delay: 0, options: [.repeat, .calculationModeLinear], animations: {
+            // Move to Right
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25) {
+                self.animationTarget.center = AnimationManager.screenRight
+                self.animationTarget.center.x -= self.targetOffset
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+                self.animationTarget.center = AnimationManager.screenTop
+                self.animationTarget.center.y += self.targetOffset
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.25) {
+                self.animationTarget.center = AnimationManager.screenLeft
+                self.animationTarget.center.x += self.targetOffset
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25) {
+                self.animationTarget.center = self.targetOrigin
+//                self.animationTarget.center.y -= self.targetOffset
+            }
+        })
+    }
 }
