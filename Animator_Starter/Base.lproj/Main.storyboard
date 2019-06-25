@@ -262,6 +262,9 @@
                                         <state key="normal" title="More Info">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="moreInfoBtnTapped:" destination="6rO-k6-zEZ" eventType="touchUpInside" id="JNP-Xi-gh5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -273,7 +276,7 @@
                                     <constraint firstItem="ibm-Aa-CxB" firstAttribute="centerX" secondItem="A2H-Wu-Jjp" secondAttribute="centerX" id="gS7-m7-3ax"/>
                                     <constraint firstAttribute="width" constant="280" id="ty5-Vt-MHJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ibm-Aa-CxB" secondAttribute="trailing" constant="73" id="uFj-Tv-ZB8"/>
-                                    <constraint firstAttribute="height" constant="121" id="yo9-Xp-Gyh"/>
+                                    <constraint firstAttribute="height" constant="121" identifier="NewsletterHeight" id="yo9-Xp-Gyh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -281,7 +284,7 @@
                         <constraints>
                             <constraint firstItem="A2H-Wu-Jjp" firstAttribute="centerX" secondItem="xCd-3S-c4n" secondAttribute="centerX" id="Jxf-5Z-fIo"/>
                             <constraint firstItem="mLw-aS-HsI" firstAttribute="centerX" secondItem="xCd-3S-c4n" secondAttribute="centerX" id="XrB-Be-dbj"/>
-                            <constraint firstItem="mLw-aS-HsI" firstAttribute="top" secondItem="iLN-y7-YlT" secondAttribute="top" constant="155" id="tuj-m4-Via"/>
+                            <constraint firstItem="mLw-aS-HsI" firstAttribute="top" secondItem="iLN-y7-YlT" secondAttribute="top" constant="155" identifier="WelcomeLabelTop" id="tuj-m4-Via"/>
                             <constraint firstItem="A2H-Wu-Jjp" firstAttribute="centerY" secondItem="xCd-3S-c4n" secondAttribute="centerY" id="xWH-4X-IZi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iLN-y7-YlT"/>
