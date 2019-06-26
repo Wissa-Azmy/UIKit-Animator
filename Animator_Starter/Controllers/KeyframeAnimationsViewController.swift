@@ -44,25 +44,24 @@ class KeyframeAnimationsViewController: UIViewController {
     // MARK: Keyframe animation
     func bounceImageWithKeyFrame() {
         UIView.animateKeyframes(withDuration: 4.0, delay: 0, options: [.repeat, .calculationModeLinear], animations: {
-            // Move to Right
+            // Move Right
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25) {
                 self.animationTarget.center = AnimationManager.screenRight
                 self.animationTarget.center.x -= self.targetOffset
             }
-            
+            // Move Top
             UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
                 self.animationTarget.center = AnimationManager.screenTop
                 self.animationTarget.center.y += self.targetOffset
             }
-            
+            // Move Left
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.25) {
                 self.animationTarget.center = AnimationManager.screenLeft
                 self.animationTarget.center.x += self.targetOffset
             }
-            
+            // Move to origin
             UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25) {
                 self.animationTarget.center = self.targetOrigin
-//                self.animationTarget.center.y -= self.targetOffset
             }
         })
     }

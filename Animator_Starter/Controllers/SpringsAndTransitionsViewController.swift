@@ -59,7 +59,7 @@ class SpringsAndTransitionsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // TODO: Fire initial animations
-        animateTitleInWithSprin()
+        animateTitleInWithSpring()
         showContinueButton()
     }
 
@@ -79,7 +79,7 @@ class SpringsAndTransitionsViewController: UIViewController {
     }
     
     // MARK: Animations & Transitions
-    func animateTitleInWithSprin() {
+    func animateTitleInWithSpring() {
         UIView.animate(withDuration: 2.0, delay: 0.25, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
             self.titleLabel.alpha = 1
             self.titleLabel.frame.origin.y += 150
@@ -87,6 +87,7 @@ class SpringsAndTransitionsViewController: UIViewController {
     }
     
     func showContinueButton() {
+        // You can use transition to add, remove, show, or hide subviews of the specified view
         UIView.transition(with: continueButton, duration: 1.0, options: [.transitionFlipFromTop], animations: {
             self.continueButton.isHidden = false
         })

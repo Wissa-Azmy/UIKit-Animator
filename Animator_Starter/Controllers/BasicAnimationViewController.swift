@@ -51,7 +51,7 @@ class BasicAnimationViewController: UIViewController {
     func animateGraphicIn() {
         UIView.animate(withDuration: 1.5, delay: 0.75, options: [.curveEaseInOut], animations: {
             self.graphic.alpha = 1
-            self.graphic.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            self.graphic.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)  // Transform the size of a view by a scale
         }) { (completed) in
             self.animateLoadingLabelPulse()
             self.segueToNextViewController(segueID: Constants.Segues.toSpringsVC, delay: 3.0)
